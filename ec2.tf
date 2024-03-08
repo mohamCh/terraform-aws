@@ -5,7 +5,8 @@ resource "aws_instance" "ec2_admin" {
   subnet_id = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.sg_main.id]
   key_name = "k8s-kp"
-
+  user_data = file("ansible-vpn.sh")
+  associate_public_ip_address	= "true"
   tags = {
     Name = "ec2_admin"
   }
